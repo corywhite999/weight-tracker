@@ -5,6 +5,7 @@ import { json, redirect } from "@remix-run/node";
 import { useLoaderData, useSubmit, Form } from "@remix-run/react";
 import FileDropTarget from "~/components/DropTarget.client";
 import csvToJson from "csvtojson";
+import { useCallback } from "react";
 
 import {
   LineChart,
@@ -49,10 +50,13 @@ export default function WeightIndexPage() {
   const data = useLoaderData<typeof loader>();
   const submit = useSubmit();
 
-  function handleUploadedData(text: string) {
-    if (!text) return;
-    submit({ text }, { method: "post" });
-  }
+  const handleUploadedData = useCallback(
+    (text: string) => {
+      if (!text) return;
+      submit({ text }, { method: "post" });
+    },
+    [submit]
+  );
 
   return (
     <>

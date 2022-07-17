@@ -49,14 +49,8 @@ export default function DropTarget({ onUpload }: Props) {
     });
   }, []);
 
-  const {
-    acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isFocused,
-    isDragAccept,
-    isDragReject,
-  } = useDropzone({ accept: { "text/csv": [] }, onDrop });
+  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
+    useDropzone({ accept: { "text/csv": [] }, onDrop });
 
   const style = useMemo(
     () => ({
